@@ -18,7 +18,10 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField "String", "WEATHER_KEY", '"18b6e3faa2385a95671906e969ecb474"'
+        def localProperties = new Properties()
+        localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+
+        buildConfigField "String", "WEATHER_KEY", localProperties['WEATHER_KEY']
         buildConfigField "String", "WEATHER_BASE_URL", '"https://api.openweathermap.org/data/2.5/"'
     }
 
