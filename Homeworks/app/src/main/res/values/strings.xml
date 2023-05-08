@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Homeworks</string>
+    <string name="start_hint">Введите название города и нажмите кнопку запрос или запросите погоду по координатам</string>
+    <string name="pressure">Давление</string>
+    <string name="wind_speed">Скорость ветра</string>
+    <string name="city">Город</string>
+    <string name="todo">TODO</string>
+    <string name="temp_symbol">℃</string>
+    <string name="humidity">Влажность</string>
+    <string name="details">Нажмите, чтобы узнать детали</string>
+    <string name="request">Запрос</string>
+    <string name="request_coords">Запрос по координатам</string>
 </resources>

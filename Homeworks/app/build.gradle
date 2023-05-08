@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-parcelize'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -9,12 +11,15 @@ android {
 
     defaultConfig {
         applicationId "com.example.homeworks"
-        minSdk 24
+        minSdk 26
         targetSdk 33
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "WEATHER_KEY", '"18b6e3faa2385a95671906e969ecb474"'
+        buildConfigField "String", "WEATHER_BASE_URL", '"https://api.openweathermap.org/data/2.5/"'
     }
 
     buildTypes {
@@ -24,22 +29,49 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    buildFeatures{
-        viewBinding = true
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
+    }
+    buildFeatures {
+        viewBinding = true
+        buildConfig = true
     }
 }
 
 dependencies {
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
+
+    // room
+    def room_version = "2.5.1"
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+    def coroutines_version = '1.6.4'
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroutines_version}")
+
+    def lifecycle_runtime_version = '2.6.0'
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:${lifecycle_runtime_version}"
+
+    def okhttp_version = '4.10.0'
+    implementation("com.squareup.okhttp3:okhttp:${okhttp_version}")
+    implementation("com.squareup.okhttp3:logging-interceptor:${okhttp_version}")
+
+    def gson_version = '2.10.1'
+    implementation("com.google.code.gson:gson:${gson_version}")
+
+    def retrofit_version = '2.9.0'
+    implementation("com.squareup.retrofit2:retrofit:${retrofit_version}")
+    implementation("com.squareup.retrofit2:converter-gson:${retrofit_version}")
+
+    def glide_version = '4.15.0'
+    implementation("com.github.bumptech.glide:glide:${glide_version}")
 
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'com.google.android.material:material:1.8.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
