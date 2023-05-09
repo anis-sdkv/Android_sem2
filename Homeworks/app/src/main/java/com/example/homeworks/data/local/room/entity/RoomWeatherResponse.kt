@@ -1,4 +1,4 @@
-package com.example.homeworks.data.room.entity
+package com.example.homeworks.data.local.room.entity
 
 import androidx.room.*
 
@@ -6,7 +6,7 @@ import androidx.room.*
 data class RoomWeatherResponse(
     val city: String,
     @Embedded
-    val coord: RoomWeatherCoords? = null,
+    val coords: RoomWeatherCoords? = null,
     @Embedded
     val main: RoomWeatherMainInfo? = null,
     @Embedded

@@ -1,25 +1,22 @@
-package com.example.homeworks.data.room
+package com.example.homeworks.data.local.room
 
-import android.content.Context
-import android.os.Build
-import androidx.annotation.RequiresApi
-import com.example.homeworks.data.room.entity.RoomWeatherResponse
-import com.example.homeworks.data.room.entity.RoomWeatherResponseWithInfo
+import com.example.homeworks.data.local.room.entity.RoomWeatherResponseWithInfo
+import com.example.homeworks.data.mapping.toRoomInfo
+import com.example.homeworks.data.mapping.toRoomResponse
+import com.example.homeworks.data.remote.weather_api.model.response.WeatherResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.time.Duration
 
-class RoomWeatherRepository(context: Context) {
-
-    private val db = AppDataBase.getInstance(context)
-
+class RoomWeatherDataSource(db: AppDataBase) {
     private val weatherResponseDao by lazy {
         db.getWeatherResponseDao()
     }
 
-    suspend fun saveWeatherResponse(response: RoomWeatherResponse): Long =
+    suspend fun saveWeatherResponse(response: WeatherResponse) =
         withContext(Dispatchers.IO) {
-            weatherResponseDao.save(response)
+            val id = weatherResponseDao.saveResponse(response.toRoomResponse())
+            weatherResponseDao.saveInfos(response.toRoomInfo(id))
         }
 
     suspend fun getWeatherResponse(city: String): RoomWeatherResponseWithInfo? =

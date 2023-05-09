@@ -1,8 +1,9 @@
-package com.example.homeworks.data.room.entity
+package com.example.homeworks.data.local.room.entity
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import com.example.homeworks.domain.entity.WeatherInfo
 
 @Entity(
     tableName = "weather_info",
@@ -14,10 +15,11 @@ import androidx.room.PrimaryKey
     )]
 )
 data class RoomWeatherInfo(
-    @PrimaryKey(autoGenerate = true)
-    val id: Long = 0,
-    val responseId: Long,
+    val infoId: Long? = null,
     val main: String? = null,
     val description: String? = null,
-    val icon: String? = null
+    val icon: String? = null,
+    val responseId: Long,
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0,
 )

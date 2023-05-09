@@ -1,4 +1,4 @@
-package com.example.homeworks.presentation.fragments
+package com.example.homeworks.presentation.fragments.bottom
 
 import android.os.Build
 import android.os.Bundle
@@ -8,8 +8,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.example.homeworks.R
-import com.example.homeworks.data.api.model.response.WeatherResponse
+import com.example.homeworks.data.remote.weather_api.model.response.WeatherResponse
 import com.example.homeworks.databinding.FragmentWeatherBottomSheetBinding
+import com.example.homeworks.domain.entity.WeatherEntity
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class WeatherBottomSheetFragment : BottomSheetDialogFragment() {
@@ -39,7 +40,7 @@ class WeatherBottomSheetFragment : BottomSheetDialogFragment() {
 
     private fun initWeatherInfo() {
         val weatherInfo = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            arguments?.getParcelable("WEATHER_INFO_KEY", WeatherResponse::class.java)
+            arguments?.getParcelable("WEATHER_INFO_KEY", WeatherEntity::class.java)
         } else {
             arguments?.getParcelable("WEATHER_INFO_KEY")
         }
@@ -50,12 +51,13 @@ class WeatherBottomSheetFragment : BottomSheetDialogFragment() {
             tvTempValue.text = weatherInfo?.main?.temp?.toString()
             tvHumidityValue.text = weatherInfo?.main?.humidity?.toString()
             tvPressureValue.text = weatherInfo?.main?.pressure?.toString()
-            tvWindSpeedValue.text = weatherInfo?.windInfo?.speed?.toString()
+            tvWindSpeedValue.text = weatherInfo?.windSpeed?.toString()
+            val info = weatherInfo?.info?.firstOrNull()
             tvDescriptionValue.text =
-                weatherInfo?.weatherList?.firstOrNull()?.description?.replaceFirstChar {
+                info?.description?.replaceFirstChar {
                     it.uppercaseChar()
                 }
-            weatherInfo?.weatherList?.firstOrNull()?.icon?.let { loadImage(ivWeatherIcon, it) }
+            info?.icon?.let { loadImage(ivWeatherIcon, it) }
         }
     }
 

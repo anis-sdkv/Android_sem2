@@ -1,7 +1,6 @@
-package com.example.homeworks.data.api
+package com.example.homeworks.data.remote.weather_api
 
 import com.example.homeworks.BuildConfig
-import com.example.homeworks.data.api.model.OpenWeatherApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

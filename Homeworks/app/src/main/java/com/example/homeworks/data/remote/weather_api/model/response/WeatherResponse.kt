@@ -1,38 +1,31 @@
-package com.example.homeworks.data.api.model.response
+package com.example.homeworks.data.remote.weather_api.model.response
 
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.parcelize.Parcelize
 
-@Parcelize
 data class WeatherResponse(
     @SerializedName("coord")
     val coords: WeatherCoords? = null,
     @SerializedName("weather")
-    val weatherList: List<WeatherInfo>? = null,
+    val weatherList: List<WeatherInfo?> = listOf(),
     @SerializedName("main")
     val main: WeatherMainInfo? = null,
     @SerializedName("name")
     val cityName: String? = null,
     @SerializedName("wind")
     val windInfo: WindInfo? = null
-) : Parcelable
+)
 
-@Parcelize
 data class WindInfo(
     @SerializedName("speed")
     val speed: Float? = null
-) : Parcelable
-
-@Parcelize
+)
 data class WeatherCoords(
     @SerializedName("lat")
     val lat: Float? = null,
     @SerializedName("lon")
     val lon: Float? = null
-) : Parcelable
+)
 
-@Parcelize
 data class WeatherInfo(
     @SerializedName("id")
     val id: Long? = null,
@@ -42,9 +35,7 @@ data class WeatherInfo(
     val description: String? = null,
     @SerializedName("icon")
     val icon: String? = null
-) : Parcelable
-
-@Parcelize
+)
 data class WeatherMainInfo(
     @SerializedName("temp")
     val temp: Float? = null,
@@ -58,4 +49,4 @@ data class WeatherMainInfo(
     val pressure: Float? = null,
     @SerializedName("humidity")
     val humidity: Float? = null
-) : Parcelable
+)

@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">Homeworks</string>
     <string name="start_hint">Введите название города и нажмите кнопку запрос или запросите погоду по координатам</string>
+    <string name="receiving_geo">Получение геолокации...</string>
+    <string name="empty_input_error">Название города не может быть пустым.</string>
+    <string name="error_message">Возникла ошибка, повторите попытку.</string>
+    <string name="city_not_found">Город не найден.</string>
+    <string name="location_error">"Не удалось получить текущее местоположение, попробуйте включить геолокацию в настройках."</string>
     <string name="pressure">Давление</string>
     <string name="wind_speed">Скорость ветра</string>
     <string name="city">Город</string>
